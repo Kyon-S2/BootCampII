@@ -1,0 +1,24 @@
+name: Python Tests
+
+on: [push, pull_request] # Roda sempre que você enviar código
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Usa um servidor Linux do GitHub
+
+    steps:
+    - uses: actions/checkout@v4 # Baixa seu código no servidor
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.14.3' # Versão que você está usando
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run tests with pytest
+      run: |
+        pytest
