@@ -20,7 +20,7 @@
 
 # Como usar esse sistema?
 
-
+Para conseguir usasr o sistema use a **main.py** que está dentro da past **"app"**
 
 
 # Dependências!
