@@ -37,7 +37,8 @@ def obter_data_valida():
         if len(dataUsuario) == 10 and dataUsuario[2] == "/" and dataUsuario[5] == "/" : #LEN usado para verificar se o texto digitado tem 10 caracteres e se as barras estão no lugar certo!
             return dataUsuario
         
-        else: print("Data inválida! Informe nesse formato: (DD/MM/AAAA)")
+        else: 
+            print("Data inválida! Informe nesse formato: (DD/MM/AAAA)")
 
 #Obter nome do gasto!
 
@@ -46,9 +47,11 @@ def obter_nome_gasto():
 
         nomeGasto = input("Informe o nome do seu gasto: ex: (Fast-Food)")
 
-        if len(nomeGasto) > 0 and nomeGasto.isdigit() == False: #Uso do isdigit para não aceitar apenas números!
+        if len(nomeGasto) > 0 and not nomeGasto.isdigit(): #Uso do isdigit para não aceitar apenas números!
             return nomeGasto
         
         else:
             print("Informe um nome válido!")
+
+
 

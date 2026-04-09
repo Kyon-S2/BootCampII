@@ -16,21 +16,21 @@ def validar_nomeGasto(nome_texto):
 #Teste para valor dado ao GASTOS!
 
 def teste_valor_positivo_deve_funcionar():
-    assert validar_valorGasto("100.50") == True
+    assert validar_valorGasto("100.50")
 
 def teste_valor_negativo_deve_falhar():
-    assert validar_valorGasto("-50.30") == False
+    assert not validar_valorGasto("-50.30")
 
 def teste_valor_texto_deve_falhar():
-    assert validar_valorGasto("Ciquenta reais e dez centavos") == False
+    assert not validar_valorGasto("Ciquenta reais e dez centavos") # Assert not pra FALSE!
 
 #Testes para nomes dados ao GASTOS!
 
 def teste_nome_valido_deve_funcionar():
-    assert validar_nomeGasto("Aluguel do meu Filho") == True
+    assert validar_nomeGasto("Aluguel do meu Filho")
 
 def teste_nome_invalido_deve_falhar():
-    assert validar_nomeGasto("1023994") == False
+    assert not validar_nomeGasto("1023994")
 
 def teste_nome_vazio_deve_falhar():
-    assert validar_nomeGasto("") == False
+    assert not validar_nomeGasto("")
