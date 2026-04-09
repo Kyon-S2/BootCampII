@@ -51,3 +51,4 @@ def obter_nome_gasto():
         
         else:
             print("Informe um nome válido!")
+

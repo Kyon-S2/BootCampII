@@ -49,4 +49,4 @@ Saída: Por fim, será mostrada o valor total da dívida.
 
 # IA
 
-Estou usando a Inteligência Artificial (GEMINI) para me auxiliar na criação do projeto, tanto em questões como código, como para estudo e entendimento do conteúdo,e para o que for necessário!
+Estou usando a Inteligência Artificial (GEMINI) para me auxiliar na criação do projeto,  tanto em questões como código (guiar e criando para uso), como para estudo e entendimento do conteúdo,e para o que for necessário!
