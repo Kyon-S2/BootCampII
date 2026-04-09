@@ -26,9 +26,9 @@
 # Dependências!
 
 Clone o repositório.
-Use python -m venv .venv
+Use python -m venv .venv no cmd para baixar o .venv!
 
-# Comandos para uso!
+### Comandos para uso!
 
 **Criar versionamento:** 
 
@@ -39,10 +39,14 @@ git push origin v0.0.0
 
 No lugar do v0.0.0 coloque a versão que você está dando!
 
-# O que preciso para montar o sistema (Entrada, Processamento, Saída)?
+### O que preciso para montar o sistema (Entrada, Processamento, Saída)?
 
 Entrada: Valor, data, "classe do gasto" e nome do gasto.
 
 Processamento: A "dívida" será catalogada, e se houver uma outra, o seu valor será acrescentado e ela será armazenada em um histórico para consulta.
 
 Saída: Por fim, será mostrada o valor total da dívida.
+
+# IA
+
+Estou usando a Inteligência Artificial (GEMINI) para me auxiliar na criação do projeto, tanto em questões como código, como para estudo e entendimento do conteúdo,e para o que for necessário!
