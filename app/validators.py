@@ -1,1 +1,0 @@
-#Validar data, valor e etc

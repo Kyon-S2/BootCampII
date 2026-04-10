@@ -9,49 +9,34 @@
 #Sistema que mostra os gastos salvos em formato (total, valor, data, classe, gasto em si)
 #Sistema que calcula o total gasto!
 
-#Obter um valor permitido!
+from app.core import obter_classeGasto, obter_data_valida, obter_nome_gasto, cadastro_gasto, menu_cadastro, historico_gastos
 
-def obter_valor_valido():
-    while True:
+if __name__ == "__main__":
 
-        valorGastoUsuario = float(input("Informe o valor do seu gasto nesse formato (50.30)"))
+    def menu_principal():
+        while True:
+            print(f"\n =-=-=-=-=-=-=-=-= Finance Control System =-=-=-=-=-=-=-=-=")
+            print(f"1. Cadastrar Novos Gastos!")
+            print(f"2. Remover Gastos!")
+            print(f"3. Atualizar Gastos!")
+            print(f"4. Ver relatório de Gastos")
+            print(f"5. Sair do sistema")
+            print(f"\n =-=-=-=-=-=-=-=-= Finance Control System =-=-=-=-=-=-=-=-=")
 
-        try:
+            escolha = input(f"Escolha uma das opções:")
 
-            if valorGastoUsuario > 0:
-                return valorGastoUsuario
+            if escolha == "1":
+                menu_cadastro()
+
+            elif escolha == "4":
+                print(f"\n Exibindo relátorio dos gastos e o valor total!:")
+                for g in historico_gastos:
+                    print(f"=-= {g['nome']}: R$ {g['valor']} ({g['classe']}) {g['data']} =-=")
+            
+            elif escolha == "5":
+                print(f"Encerrando o programa, até mais!")
+                break
+
             else:
-                print("O valor precisa ser maior que 0") # Caso seja menor ou igual a 0
-
-        except ValueError: #Caso informe letras OU outros caracteres!
-
-            print(" Isso provavelmente não é um número. Por favor, informe um número (30.20)")
-
-#Obter data válida!
-
-def obter_data_valida():
-    while True:
-
-        dataUsuario = input("Informe a data nesse formato, incluindo as barras: ex: (DD/MM/AAAA):")
-
-        if len(dataUsuario) == 10 and dataUsuario[2] == "/" and dataUsuario[5] == "/" : #LEN usado para verificar se o texto digitado tem 10 caracteres e se as barras estão no lugar certo!
-            return dataUsuario
-        
-        else: 
-            print("Data inválida! Informe nesse formato: (DD/MM/AAAA)")
-
-#Obter nome do gasto!
-
-def obter_nome_gasto():
-    while True:
-
-        nomeGasto = input("Informe o nome do seu gasto: ex: (Fast-Food)")
-
-        if len(nomeGasto) > 0 and not nomeGasto.isdigit(): #Uso do isdigit para não aceitar apenas números!
-            return nomeGasto
-        
-        else:
-            print("Informe um nome válido!")
-
-
+                print(f"Opção inválida ou sem funcionamento ainda!")
 
