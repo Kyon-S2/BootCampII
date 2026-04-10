@@ -1,13 +1,36 @@
-#LÓGICA! (DEFS)
+import json
+import os
 
-historico_gastos = []
+#Funcionalidades para armazenar(salvar) os gastos da pessoa! SAVE!
+
+arquivo_dados = "gastos.json"
+
+def salvar_dados(lista_gastos):
+    
+    with open(arquivo_dados, "w", encoding="utf-8") as arquivo:
+        json.dump(lista_gastos, arquivo, indent=4, ensure_ascii=False)
+
+def carregar_dados():
+    
+    if not os.path.exists(arquivo_dados):
+        return []
+    
+    with open(arquivo_dados, "r", encoding="utf-8") as arquivo:
+        return json.load(arquivo)
+    
+
+historico_gastos = carregar_dados() # Onde está sendo armazenado as informações (historico_gastos) e var que carrega os dados!
+
+#DEMAIS FUNCIONALIDADES!
 
 def obter_valor_valido():
     while True:
 
-        valorGastoUsuario = float(input("Informe o valor do seu gasto nesse formato (50.30)"))
+        valorGastoUsuario = input("Informe o valor do seu gasto nesse formato (50.30):")
 
         try:
+
+            valorGastoUsuario = float(valorGastoUsuario)
 
             if valorGastoUsuario > 0:
                 return valorGastoUsuario
@@ -36,7 +59,7 @@ def obter_data_valida():
 def obter_nome_gasto():
     while True:
 
-        nomeGasto = input("Informe o nome do seu gasto, ex: (Fast-Food)")
+        nomeGasto = input("Informe o nome do seu gasto, ex: (Arroz, boneca, etc): ")
 
         if len(nomeGasto) > 0 and not nomeGasto.isdigit(): #Uso do isdigit para não aceitar apenas números!
             return nomeGasto
@@ -88,9 +111,37 @@ def menu_cadastro():
         novo_gasto = cadastro_gasto()
 
         historico_gastos.append(novo_gasto)
+        salvar_dados(historico_gastos) #Salvando!
 
         opcao = input(f"\n Quer cadastrar outro gasto? (S/N):").upper().strip()
 
         if opcao != "S":
             print(f"Retornando ao Menu")
             break
+
+def menu_principal():
+        while True:
+            print(f"\n =-=-=-=-=-=-=-=-= Finance Control System =-=-=-=-=-=-=-=-=")
+            print(f"1. Cadastrar Novos Gastos!")
+            print(f"2. Remover Gastos!")
+            print(f"3. Atualizar Gastos!")
+            print(f"4. Ver relatório de Gastos")
+            print(f"5. Sair do sistema")
+            print(f"\n =-=-=-=-=-=-=-=-= Finance Control System =-=-=-=-=-=-=-=-=")
+
+            escolha = input(f"Escolha uma das opções:")
+
+            if escolha == "1":
+                menu_cadastro()
+
+            elif escolha == "4":
+                print(f"\n Exibindo relátorio dos gastos e o valor total!:")
+                for g in historico_gastos:
+                    print(f"=-= {g['nome']}: R$ {g['valor']} ({g['classe']}) {g['data']} =-=")
+            
+            elif escolha == "5":
+                print(f"Encerrando o programa, até mais!")
+                break
+
+            else:
+                print(f"Opção inválida ou sem funcionamento ainda!")
