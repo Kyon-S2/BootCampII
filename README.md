@@ -1,3 +1,5 @@
+[![Python Tests](https://github.com/Kyon-S2/BootCampII/actions/workflows/python-tests.yml/badge.svg)](https://github.com/Kyon-S2/BootCampII/actions/workflows/python-tests.yml)
+
 # Nome do Projeto
 
 
