@@ -27,7 +27,7 @@ historico_gastos = carregar_dados() # Onde está sendo armazenado as informaçõ
 def obter_valor_valido():
     while True:
 
-        valorGastoUsuario = input("Informe o valor do seu gasto nesse formato (50.30):")
+        valorGastoUsuario = input("Informe o valor do seu gasto nesse formato (50.30):  ")
 
         try:
 
@@ -40,14 +40,14 @@ def obter_valor_valido():
 
         except ValueError: #Caso informe letras OU outros caracteres!
 
-            print(" Isso provavelmente não é um número. Por favor, informe um número (30.20)")
+            print("Isso provavelmente não é um número. Por favor, informe um número (30.20)")
 
 #Obter data válida!
 
 def obter_data_valida():
     while True:
 
-        dataUsuario = input("Informe a data nesse formato, incluindo as barras, ex: (DD/MM/AAAA):")
+        dataUsuario = input("Informe a data nesse formato, incluindo as barras, ex: (DD/MM/AAAA):  ")
 
         if len(dataUsuario) == 10 and dataUsuario[2] == "/" and dataUsuario[5] == "/" : #LEN usado para verificar se o texto digitado tem 10 caracteres e se as barras estão no lugar certo!
             return dataUsuario
@@ -60,7 +60,7 @@ def obter_data_valida():
 def obter_nome_gasto():
     while True:
 
-        nomeGasto = input("Informe o nome do seu gasto, ex: (Arroz, boneca, etc): ")
+        nomeGasto = input("Informe o nome do seu gasto, ex: (Arroz, boneca, etc):  ")
 
         if len(nomeGasto) > 0 and not nomeGasto.isdigit(): #Uso do isdigit para não aceitar apenas números!
             return nomeGasto
@@ -73,7 +73,7 @@ def obter_nome_gasto():
 def obter_classeGasto():
     while True:
 
-        nomeClasseGasto = input("Informe o tipo de gasto, ex:(Mercado,Lazer,etc):")
+        nomeClasseGasto = input("Informe o tipo de gasto, ex:(Mercado,Lazer,etc):  ")
 
         if len(nomeClasseGasto) > 0 and not nomeClasseGasto.isdigit():
             return nomeClasseGasto
@@ -84,7 +84,7 @@ def obter_classeGasto():
 #CADASTRO DE GASTO! (Função que vai juntar todas as funções acima para o cadastro dos gastos!)
 
 def cadastro_gasto():
-    print("\n --- Cadastro de Gasto ---")
+    print("\n--- Cadastro de Gasto ---\n")
 
     nome = obter_nome_gasto()
     valor = obter_valor_valido()
@@ -100,7 +100,7 @@ def cadastro_gasto():
         "data": data
     }
 
-    print("\n Gasto formado!")
+    print("\nGasto formado!")
     return gastoFormado
 
 # Função que possibilita com que o usuário continue cadastrando gastos até que decida parar!
@@ -114,16 +114,16 @@ def menu_cadastro():
         historico_gastos.append(novo_gasto)
         salvar_dados(historico_gastos) #Salvando!
 
-        opcao = input("\n Quer cadastrar outro gasto? (S/N):").upper().strip()
+        opcao = input("\nQuer cadastrar outro gasto? (S/N):  ").upper().strip()
 
         if opcao != "S":
-            print("Retornando ao Menu")
+            print("\nRetornando ao Menu")
             break
 
 def menu_principal():
         global historico_gastos
         while True:
-            print("\n =-=-=-=-=-=-=-=-= Finance Control System =-=-=-=-=-=-=-=-=")
+            print("\n =-=-=-=-=-=-=-=-= Finance Control System =-=-=-=-=-=-=-=-=\n")
             print("1. Cadastrar Novos Gastos!")
             print("2. Remover Gastos!")
             print("3. Atualizar Gastos! (Sem funcionamento ainda!)")
@@ -131,7 +131,7 @@ def menu_principal():
             print("5. Sair do sistema")
             print("\n =-=-=-=-=-=-=-=-= Finance Control System =-=-=-=-=-=-=-=-=")
 
-            escolha = input("Escolha uma das opções:")
+            escolha = input("\nEscolha uma das opções:  ")
 
             if escolha == "1":
                 menu_cadastro()
@@ -145,7 +145,7 @@ def menu_principal():
                         print(f"{i}. {g['nome']} | R$ {g['valor']} | {g['data']}")
 
                     try:
-                        num = int(input("\n Digite o número do gasto que deseja excluir!"))
+                        num = int(input("\nDigite o número do gasto que deseja excluir:  "))
                         remover_gasto(num)
                     
                     except ValueError:
@@ -161,7 +161,7 @@ def menu_principal():
                 #Calculando total agora!
 
                 total = sum(g['valor'] for g in historico_gastos)
-                print(f"\n Valor Total Acumulado: R$ {total:.2f}")
+                print(f"\nValor Total Acumulado: R$ {total:.2f}")
                 print("=-="*15)
 
             elif escolha == "5":
@@ -199,6 +199,6 @@ def remover_gasto(indice):
             return
         gasto_removido = historico_gastos.pop(indice-1)
         salvar_dados(historico_gastos)
-        print(f"Tudo certo!, o gasto: '{gasto_removido['nome']}' foi removido!")
+        print(f"\nTudo certo!, o gasto: '{gasto_removido['nome']}' foi removido!")
     except IndexError:
-        print("\n Erro!: O número inserido não existe na lista!")
+        print("\nErro!: O número inserido não existe na lista!")
