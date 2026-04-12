@@ -84,7 +84,7 @@ def obter_classeGasto():
 #CADASTRO DE GASTO! (Função que vai juntar todas as funções acima para o cadastro dos gastos!)
 
 def cadastro_gasto():
-    print(f"\n --- Cadastro de Gasto ---")
+    print("\n --- Cadastro de Gasto ---")
 
     nome = obter_nome_gasto()
     valor = obter_valor_valido()
@@ -100,7 +100,7 @@ def cadastro_gasto():
         "data": data
     }
 
-    print(f"\n Gasto formado!")
+    print("\n Gasto formado!")
     return gastoFormado
 
 # Função que possibilita com que o usuário continue cadastrando gastos até que decida parar!
@@ -114,27 +114,43 @@ def menu_cadastro():
         historico_gastos.append(novo_gasto)
         salvar_dados(historico_gastos) #Salvando!
 
-        opcao = input(f"\n Quer cadastrar outro gasto? (S/N):").upper().strip()
+        opcao = input("\n Quer cadastrar outro gasto? (S/N):").upper().strip()
 
         if opcao != "S":
-            print(f"Retornando ao Menu")
+            print("Retornando ao Menu")
             break
 
 def menu_principal():
         global historico_gastos
         while True:
-            print(f"\n =-=-=-=-=-=-=-=-= Finance Control System =-=-=-=-=-=-=-=-=")
-            print(f"1. Cadastrar Novos Gastos!")
-            print(f"2. Remover Gastos!")
-            print(f"3. Atualizar Gastos!")
-            print(f"4. Ver relatório de Gastos")
-            print(f"5. Sair do sistema")
-            print(f"\n =-=-=-=-=-=-=-=-= Finance Control System =-=-=-=-=-=-=-=-=")
+            print("\n =-=-=-=-=-=-=-=-= Finance Control System =-=-=-=-=-=-=-=-=")
+            print("1. Cadastrar Novos Gastos!")
+            print("2. Remover Gastos!")
+            print("3. Atualizar Gastos! (Sem funcionamento ainda!)")
+            print("4. Ver relatório de Gastos")
+            print("5. Sair do sistema")
+            print("\n =-=-=-=-=-=-=-=-= Finance Control System =-=-=-=-=-=-=-=-=")
 
-            escolha = input(f"Escolha uma das opções:")
+            escolha = input("Escolha uma das opções:")
 
             if escolha == "1":
                 menu_cadastro()
+
+            elif escolha == "2":
+                print("\n" + "=-"*8 + "Remover Gasto" + "-="*8)
+                if not historico_gastos:
+                    print("Não existe gastos para serem removidos!")
+                else:
+                    for  i, g in enumerate(historico_gastos, 1):
+                        print(f"{i}. {g['nome']} | R$ {g['valor']} | {g['data']}")
+
+                    try:
+                        num = int(input("\n Digite o número do gasto que deseja excluir!"))
+                        remover_gasto(num)
+                    
+                    except ValueError:
+                        print("Digite apenas números, por favor!")
+                    
 
             elif escolha == "4":
                 print(f"\n" + "=-"*10 + "Relatório/Total" + "-="*10)
@@ -149,7 +165,7 @@ def menu_principal():
                 print(f"=-="*15)
 
             elif escolha == "5":
-                print(f"Encerrando o programa, até mais!")
+                print("Encerrando o programa, até mais!")
                 break
 
             else:
@@ -174,4 +190,15 @@ def relatorio_tabela(lista_gastos):
 
     cabecalhos = ["Nome do Produto", "Valor", "Categoria","Data"]
     return tabulate(dados_tabela, headers=cabecalhos, tablefmt="fancy_grid")
-        
+
+def remover_gasto(indice):
+    global historico_gastos
+    try:
+        if indice <= 0:
+            print("Informe um número maior que zero! \n")
+            return
+        gasto_removido = historico_gastos.pop(indice-1)
+        salvar_dados(historico_gastos)
+        print(f"Tudo certo!, o gasto: '{gasto_removido['nome']}' foi removido!")
+    except IndexError:
+        print("\n Erro!: O número inserido não existe na lista!")

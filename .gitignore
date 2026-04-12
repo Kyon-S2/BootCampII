@@ -1,6 +1,12 @@
 .venv/
-__pycache__/
 gastos.json
-.pytest_cache/
 .ruff_cache/
+
+__pycache__/
+.pytest_cache/
 *.pyc
+.vscode/
+
+*.png
+*.jpg
+*.jpeg

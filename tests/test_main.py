@@ -30,6 +30,19 @@ def teste_valor_negativo_deve_falhar():
 def teste_valor_texto_deve_falhar():
     assert not validar_valorGasto("Ciquenta reais e dez centavos") # Assert not pra FALSE!
 
+#Caso limite =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+def teste_valor_caso_limite_deve_funcionar():
+    assert validar_valorGasto("0.0111")
+
+def teste_valor_caso_limite_negativo_deve_falhar():
+    assert not validar_valorGasto("-0.01")
+
+def teste_valor_caso_limite_zero_deve_falhar():
+    assert not validar_valorGasto("0.00")
+
+#Caso Limite =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-
+
 #Testes para nomes dados ao GASTOS!
 
 def teste_nome_valido_deve_funcionar():

@@ -19,6 +19,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Run linting with Ruff
+      run: |
+        ruff check . #Vê se o código está padronizado!
+
     - name: Run tests with pytest
       run: |
-        pytest
+        pytest #Executa teste!
