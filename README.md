@@ -145,7 +145,7 @@
 
 ### Referências e IA!
 
-**Estou usando a Inteligência Artificial (GEMINI) para me auxiliar na criação do projeto,  tanto em questões como código (guiar e criando para uso), como para estudo e entendimento do conteúdo,e para o que for necessário!**
+**Estou usando a Inteligência Artificial (GEMINI) para me auxiliar na criação do projeto,  tanto em questões como código (guiar e criando para uso), como para estudo e entendimento do conteúdo,criação de arquivos, como LICENSE, CONTRIBUTING, e para o que for necessário!**
 
 **Também usei os conheimentos fornecidos pelo meu professor para criar o sistema, uma vez que ao ver seu vídeo na aula mostrando o sistema feito por ele achei interessante de ser feito e bem útil.**
 
