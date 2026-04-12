@@ -1,5 +1,6 @@
 import json
 import os
+from tabulate import tabulate
 
 #Funcionalidades para armazenar(salvar) os gastos da pessoa! SAVE!
 
@@ -106,10 +107,10 @@ def cadastro_gasto():
 
 def menu_cadastro():
 
+    global historico_gastos
     while True:
 
         novo_gasto = cadastro_gasto()
-
         historico_gastos.append(novo_gasto)
         salvar_dados(historico_gastos) #Salvando!
 
@@ -120,6 +121,7 @@ def menu_cadastro():
             break
 
 def menu_principal():
+        global historico_gastos
         while True:
             print(f"\n =-=-=-=-=-=-=-=-= Finance Control System =-=-=-=-=-=-=-=-=")
             print(f"1. Cadastrar Novos Gastos!")
@@ -135,13 +137,41 @@ def menu_principal():
                 menu_cadastro()
 
             elif escolha == "4":
-                print(f"\n Exibindo relátorio dos gastos e o valor total!:")
-                for g in historico_gastos:
-                    print(f"=-= {g['nome']}: R$ {g['valor']} ({g['classe']}) {g['data']} =-=")
-            
+                print(f"\n" + "=-"*10 + "Relatório/Total" + "-="*10)
+                
+                tabela = relatorio_tabela(historico_gastos)
+                print(tabela)
+
+                #Calculando total agora!
+
+                total = sum(g['valor'] for g in historico_gastos)
+                print(f"\n Valor Total Acumulado: R$ {total:.2f}")
+                print(f"=-="*15)
+
             elif escolha == "5":
                 print(f"Encerrando o programa, até mais!")
                 break
 
             else:
                 print(f"Opção inválida ou sem funcionamento ainda!")
+
+#Função para fazer o relatório no formato de tabela! (Organização)!
+
+def relatorio_tabela(lista_gastos):
+    if not lista_gastos:
+        return "Não há gastos cadastrados!"
+    
+#Lista propriamente dita!
+
+    dados_tabela = []
+    for g in lista_gastos:
+        dados_tabela.append ([
+            g['nome'],
+            f"R$ {g['valor']:.2f}",
+            g['classe'],
+            g['data']
+        ])
+
+    cabecalhos = ["Nome do Produto", "Valor", "Categoria","Data"]
+    return tabulate(dados_tabela, headers=cabecalhos, tablefmt="fancy_grid")
+        
