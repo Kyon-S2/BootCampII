@@ -153,7 +153,7 @@ def menu_principal():
                     
 
             elif escolha == "4":
-                print(f"\n" + "=-"*10 + "Relatório/Total" + "-="*10)
+                print("\n" + "=-"*10 + "Relatório/Total" + "-="*10)
                 
                 tabela = relatorio_tabela(historico_gastos)
                 print(tabela)
@@ -162,14 +162,14 @@ def menu_principal():
 
                 total = sum(g['valor'] for g in historico_gastos)
                 print(f"\n Valor Total Acumulado: R$ {total:.2f}")
-                print(f"=-="*15)
+                print("=-="*15)
 
             elif escolha == "5":
                 print("Encerrando o programa, até mais!")
                 break
 
             else:
-                print(f"Opção inválida ou sem funcionamento ainda!")
+                print("Opção inválida ou sem funcionamento ainda!")
 
 #Função para fazer o relatório no formato de tabela! (Organização)!
 

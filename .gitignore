@@ -7,6 +7,12 @@ __pycache__/
 *.pyc
 .vscode/
 
-*.png
-*.jpg
-*.jpeg
+# Ignora imagens soltas na raiz
+/*.png
+/*.jpg
+/*.jpeg
+
+# Mas NÃO ignora a pasta de assets do projeto
+!img/*.png
+!img/*.jpg
+!img/*.jpeg
